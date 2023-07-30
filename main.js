@@ -1,71 +1,36 @@
-let nombre = prompt("ingrese su nombre");
-let apellido = prompt("ingrese su apellido");
-alert(`Hola ${nombre} ${apellido}`); 
+ let nombre = prompt("ingrese su nombre");
+ let apellido = prompt("ingrese su apellido");
+ alert(`Hola ${nombre} ${apellido}`); 
 
-let nota = parseInt(prompt("Ingrese su nota, de caso contrario vuelva a ingresar su nombre"));
+  alert("Su nota tiene que tener un promedio de 12 para estar aprobado caso contrario el alumno tendra que recursar la materia");
 
-// while(nota!="ESC"){
+  function examen(){ 
+ for(let i=0; i < 1; i++){
 
-//     switch(nota) {
+    let nota1 = parseInt(prompt("Ingresa la nota de tu examen"));
+    let nota2 = parseInt(prompt("Ingresa la nota de tu examen"));
+    let nota3 = parseInt(prompt("Ingresa la nota de tu examen"));
 
-// case "perfecto":
+    let total = nota1 + nota2 + nota3
+    alert("Tu puntaje es de " + total);
+ 
 
-// if(nota >=8 && nota<=10){
+ if (total >= 21){
 
-//     alert("Usted aprobo su examen con una nota perfecto");
+    alert("usted promociono la materia");
 
-// }
+}else if (total >= 12 && total <= 20.5){
 
-// break;
+     alert("Usted se encuentra aprobado pero debera rendir una instancia final para promocionar la materia");
 
-// case "regular":
+}else {
 
-// if(nota >= 6 && nota<= 7){
+    alert("Usted no cuenta con la nota suficiente para aprobar, tendra que recursar la materia");
 
-//     alert("Su examen se aprobo con una nota regular");
+}
 
-// }
-
-// break;
-
-// case "desaprobado":
-
-// if(nota <= 5){
-
-//     alert("Su examen fue desaprobado");
-
-// }
-
-// break;
-
-// default:
-
-// alert("Usted no se presento a rendir");
-
-// break;
-//     }
-
-// }
-
-function examen(){
-
-    if (nota >=8){
-
-        alert("Su examen obtiene una nota de excelente");
-
-    } else if(nota === 6 || nota === 7){
-
-        alert("Su examen se encuentra aprobado")
-
-    } else if(nota <=5){
-
-        alert("Su examen se encuentra desaprobado");
-
-    }else{
-
-        alert("Usted tiene una nota de ausente en el examen");
-
-    }
+ 
+}
 
 }
 
