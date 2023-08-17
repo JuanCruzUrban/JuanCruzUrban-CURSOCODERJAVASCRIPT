@@ -24,12 +24,12 @@ while(consulta != "esc" ){
 
 let prodEncontrado = instrumentosDeCuerdas.find(i => i.nombre ==consulta.toLocaleLowerCase())
 
-alert(prodEncontrado);
 
 
-   if(productoEnc !== undefined && prodEncontrado.stock > 0){
+
+   if(prodEncontrado !== undefined && prodEncontrado.stock > 0){
  
-    elementos.stock = elementos.stock - 1;
+    prodEncontrado.stock = prodEncontrado.stock - 1;
     carrito.push({nombre: prodEncontrado.nombre, precio: prodEncontrado.precio, stock: prodEncontrado.stock})
 
     consulta = prompt("que instrumento desea comprar");
