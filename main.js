@@ -18,11 +18,11 @@ let instrumentosDeCuerdas = [
 
 let carrito = [];
 
-let consulta = prompt("que instrumento desea comprar");
+let consulta = prompt("que instrumento desea comprar, en caso contrario escriba esc");
 
-while(consulta != "esc" ){ 
+while(consulta !== "esc" ){ 
 
-let prodEncontrado = instrumentosDeCuerdas.find(i => i.nombre ==consulta.toLocaleLowerCase())
+let prodEncontrado = instrumentosDeCuerdas.find(i => i.nombre ==consulta)
 
 
 
@@ -32,21 +32,21 @@ let prodEncontrado = instrumentosDeCuerdas.find(i => i.nombre ==consulta.toLocal
     prodEncontrado.stock = prodEncontrado.stock - 1;
     carrito.push({nombre: prodEncontrado.nombre, precio: prodEncontrado.precio, stock: prodEncontrado.stock})
 
-    consulta = prompt("que instrumento desea comprar");
+    consulta = prompt("que instrumento desea comprar, si ya no desea ningun articulo mas escriba esc");
 
 alert(`Usted debera pagar ${prodEncontrado.precio} por el instrumento ${prodEncontrado.nombre}`)
 
-   }else if(prodEncontrado.stock < 1){
+   } else if(prodEncontrado !== undefined && prodEncontrado.stock < 1){
 
-alert("Lo Siento, no me queda en stock ese articulo")
+alert("Lo Siento, no me queda en stock ese articulo");
 
-consulta = prompt("que instrumento desea comprar");
+consulta = prompt("que instrumento desea comprar, si ya no desea ningun articulo mas escriba esc");
 
    }else{
 
     alert("ese instrumento no lo tenemos")
 
-    consulta = prompt("que instrumento desea comprar");
+    consulta = prompt("que instrumento desea comprar, si ya no desea ningun articulo mas escriba esc");
    }
 
 
@@ -54,3 +54,4 @@ consulta = prompt("que instrumento desea comprar");
 
 
 console.log(carrito)
+
