@@ -1,57 +1,111 @@
 
 
 
-let nombre = prompt("Ingrese su nombre por favor");
 
-alert(`Bienvenido ${nombre}  a la tienda de Lutheria Urbancaster, ¿que instrumento de cuerda desea comprar?`);
-
+// // TERCERA PRE ENTREGA
 
 
-let instrumentosDeCuerdas = [ 
 
-{nombre: "guitarra", precio: 5000, stock: 5},
-{nombre: "charango", precio: 4000, stock: 5},
-{nombre: "violin", precio: 3000, stock: 5},
-{nombre: "bajo", precio: 2000, stock:5}
+const productos = [{id: 1, nombre: "guitarra", precio: 5000},
+{id: 2, nombre: "violin", precio: 4000},
+{id: 3, nombre: "bajo", precio: 3000},
+{id: 4, nombre: "violonchelo", precio: 2000},
+{id: 5, nombre: "charango", precio: 1000}];
 
-];
+let carro =  [];
+ let total = 0;
 
-let carrito = [];
+let body = document.getElementById("body");
+let contenedor = document.getElementById("cajaContenedora")
 
-let consulta = prompt("que instrumento desea comprar, en caso contrario escriba esc");
 
-while(consulta !== "esc" ){ 
-
-let prodEncontrado = instrumentosDeCuerdas.find(i => i.nombre ==consulta)
+let carrito = document.createElement("section");
 
 
 
 
-   if(prodEncontrado !== undefined && prodEncontrado.stock > 0){
- 
-    prodEncontrado.stock = prodEncontrado.stock - 1;
-    carrito.push({nombre: prodEncontrado.nombre, precio: prodEncontrado.precio, stock: prodEncontrado.stock})
+productos.forEach(item => {
+  let div = document.createElement("div");
+let id = document.createElement("h2")
+let nombre = document.createElement("h3")
+let precio = document.createElement("p")
+let botonAgregar =document.createElement("button")
+let botonRestar = document.createElement("button")
+botonAgregar.innerHTML = "Agregar al carrito";
+botonRestar.innerHTML = "Sacar del carrito";
 
-    consulta = prompt("que instrumento desea comprar, si ya no desea ningun articulo mas escriba esc");
 
-alert(`Usted debera pagar ${prodEncontrado.precio} por el instrumento ${prodEncontrado.nombre}`)
+id.innerHTML = `Id : ${item.id}`
+nombre.innerHTML = `nombre del instrumento: ${item.nombre}`
+precio.innerHTML = `precio: ${item.precio} `
 
-   } else if(prodEncontrado !== undefined && prodEncontrado.stock < 1){
+contenedor.append(div)
+div.append(id);
+div.append(nombre);
+div.append(precio);
+div.append(botonAgregar);
+div.append(botonRestar);
 
-alert("Lo Siento, no me queda en stock ese articulo");
+botonAgregar.addEventListener("click", () =>{
 
-consulta = prompt("que instrumento desea comprar, si ya no desea ningun articulo mas escriba esc");
+carro.push({id: item.id, nombre: item.nombre})
 
-   }else{
+total = total + item.precio
+localStorage.setItem("carro", JSON.stringify(carro))
 
-    alert("ese instrumento no lo tenemos")
+console.log(carro)
+console.log(total)
 
-    consulta = prompt("que instrumento desea comprar, si ya no desea ningun articulo mas escriba esc");
-   }
 
+carrito.innerHTML = `<p>Debera pagar por su instrumento o instrumentos $ ${total} `
+
+contenedor.append(carrito)
+capturarItem()
+
+
+
+})
+
+
+botonRestar.addEventListener("click", () =>{
+
+ carro.pop()
+
+total = total - item.precio
+localStorage.setItem("carro", JSON.stringify(carro))
+
+if(total ===0 || total < 0){
+
+  total = 0
+  console.log("su carrito se encuentra vacio")
 
 }
 
+console.log(carro)
+console.log(total)
 
-console.log(carrito)
+carrito.innerHTML = `<p>Debera pagar por su instrumento o instrumentos $ ${total} `
 
+contenedor.append(carrito)
+capturarItem()
+
+
+
+})
+
+
+
+})
+
+
+
+
+function capturarItem(){
+  
+  carro.forEach(item =>{
+    let h3 = document.createElement("h3")
+    h3.innerHTML = `Su (s) instrumento (s) son: ${item.nombre}`
+    carrito.append(h3)
+  
+  })
+}
